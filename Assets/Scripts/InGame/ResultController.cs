@@ -13,13 +13,13 @@ public class ResultController : MonoBehaviour
     [SerializeField] private Window stageClearWindow;
     [SerializeField] private Window failWindow;
 
-    private static int _remainedRotateCount;
+    private int _remainedRotateCount;
 
     private IDisposable _playerDisposable;
     private IDisposable _targetDisposable;
     private CancellationTokenSource _cts;
 
-    public static void SetRotateCount(int count)
+    public void SetRotateCount(int count)
     {
         _remainedRotateCount = count;
     }
