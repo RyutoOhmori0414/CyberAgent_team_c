@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
@@ -27,7 +28,19 @@ public class ResultController : MonoBehaviour
     private void Start()
     {
         _cts = new CancellationTokenSource();
-        // TODO: PlayerとTargetのOnDeadを購読する
+
+        _playerDisposable = Player.OnDead
+            .Subscribe(_ =>
+            {
+                OnPlayerDead();
+            });
+        
+        _targetDisposable = Target.OnDead
+            .Subscribe(_ =>
+            {
+                OnTargetDead();
+            });
+        
         boardRotater.OnRotate
             .Subscribe(_ =>
             {
@@ -38,6 +51,7 @@ public class ResultController : MonoBehaviour
     private void DecreaseRotateCount()
     {
         _remainedRotateCount--;
+        rotateCountView.SetCount(_remainedRotateCount);
         if (_remainedRotateCount <= 0)
         {
             WaitFinishAsync(_cts.Token).Forget();
@@ -46,19 +60,30 @@ public class ResultController : MonoBehaviour
 
     private async UniTaskVoid WaitFinishAsync(CancellationToken token)
     {
-        // TODO: Player Targetの動きが止まるまで待つ or 時間経過を待つ処理を書く
+        var finishWaiter = new FinishWaiter(moveObjectHolder.GetCollection());
+        await UniTask.WaitUntil(() => finishWaiter.IsFinished, cancellationToken: token);
+        
+        // 止まった or 時間が経過した
+        _playerDisposable?.Dispose();
+        _targetDisposable?.Dispose();
+        OnFailed();
     }
 
     private void OnPlayerDead()
     {
+        _playerDisposable?.Dispose();
+        _targetDisposable?.Dispose();
         StopMovement();
         OnFailed();
     }
 
     private void OnTargetDead()
     {
-        // GetTargetCount();
-        // TODO: 数みて条件一致ならクリア
+        var targetCount = GetTargetCount();
+        if (targetCount <= 0)
+        {
+            OnStageCleared();
+        }
     }
     
     private void StopMovement()
@@ -85,9 +110,49 @@ public class ResultController : MonoBehaviour
         _cts?.Dispose();
     }
 
-    /*private int GetTargetCount()
+    private int GetTargetCount()
     {
         var moveables = moveObjectHolder.GetCollection();
         return moveables.Select(x => x is Target).Count();
-    }*/
+    }
+
+    private class FinishWaiter
+    {
+        public bool IsFinished { get; private set; }
+        private ICollection<IMoveable> _moveables;
+        private CancellationTokenSource _cts;
+
+        public FinishWaiter(ICollection<IMoveable> moveables)
+        {
+            IsFinished = false;
+            _moveables = moveables;   
+            _cts = new CancellationTokenSource();
+            WaitTime(_cts.Token).Forget();
+            WaitAllVelocityStopped(_cts.Token).Forget();
+        }
+
+        private async UniTaskVoid WaitTime(CancellationToken token)
+        {
+            const float waitTime = 15f;
+            await UniTask.Delay(TimeSpan.FromSeconds(waitTime), cancellationToken: token);
+            IsFinished = true;
+            _cts.Cancel();
+        }
+
+        private async UniTaskVoid WaitAllVelocityStopped(CancellationToken token)
+        {
+            const float minMagnitude = 0.5f;
+            while (true)
+            {
+                await UniTask.Delay(TimeSpan.FromSeconds(1f), cancellationToken: token);
+                if (_moveables.All(x => x.GetVelocity().magnitude <= minMagnitude))
+                {
+                    IsFinished = true;
+                    _cts.Cancel();
+                }
+
+                if (token.IsCancellationRequested) return;
+            }
+        }
+    }
 }
