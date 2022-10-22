@@ -520,10 +520,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1696822411}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1c4a1450ed2454d8a070f62f9dafec6, type: 3}
+  m_Script: {fileID: 11500000, guid: 15da8019de823ec488ecd8217386310f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inGameProcessor: {fileID: 0}
 --- !u!1 &1700202810
 GameObject:
   m_ObjectHideFlags: 0
