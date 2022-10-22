@@ -80,8 +80,8 @@ public class ResultController : MonoBehaviour
 
     private void OnTargetDead()
     {
-        Debug.Log("Target dead");
         var targetCount = GetTargetCount();
+        Debug.Log("Target dead => " + targetCount);
         if (targetCount <= 0)
         {
             OnStageCleared();
@@ -117,7 +117,7 @@ public class ResultController : MonoBehaviour
     private int GetTargetCount()
     {
         var moveables = MoveObjectHolder.GetCollection();
-        return moveables.Select(x => x is Target).Count();
+        return moveables.Count(x => x is Target);
     }
 
     private class FinishWaiter
