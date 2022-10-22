@@ -9,6 +9,8 @@ public class StageSelectButton : ButtonBase
     public override void OnPointerClick(PointerEventData eventData)
     {
         InGameProcessor.GoStage(stage);
+        AudioManager.instance.StopBGM();
+        AudioManager.instance.PlayBGM(1);
         sceneChanger.LoadScene($"Stage{stage}");
     }
 }
