@@ -5,8 +5,8 @@ using UniRx;
 
 public class SwitchObject : MonoBehaviour
 {
-    ReactiveProperty<bool> _pressState;
-    public IReadOnlyReactiveProperty<bool> PressState;
+    ReactiveProperty<bool> _pressState = new ReactiveProperty<bool>();
+    public IReadOnlyReactiveProperty<bool> PressState => _pressState;
 
     private void OnTriggerEnter(Collider other)
     {
