@@ -14,25 +14,11 @@ public class Player : MonoBehaviour, IMoveable, ITeleportable
     private static Subject<Unit> _deathSubject = new Subject<Unit>();
     public static IObservable<Unit> OnDead => _deathSubject;
 
-    [SerializeField]
-    MoveObjectHolder _moveObjectHolder = default;
-
     private bool _isMove = true;
 
     private void Start()
     {
-        if (_moveObjectHolder == null)
-        {
-            Debug.LogError("MoveObjectHolderをアサインしてください！");
-#if UNITY_EDITOR
-            //UnityEditor.EditorApplication.isPlaying = false;
-#endif
-        }
-        else
-        {
-            _moveObjectHolder.AddObject(this);
-        }
-
+        MoveObjectHolder.AddObject(this);
         _rig = GetComponent<Rigidbody>();
     }
     private void FixedUpdate()
