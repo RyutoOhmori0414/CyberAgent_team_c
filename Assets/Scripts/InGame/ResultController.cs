@@ -22,6 +22,7 @@ public class ResultController : MonoBehaviour
     public void SetRotateCount(int count)
     {
         _remainedRotateCount = count;
+        rotateCountView.SetCount(_remainedRotateCount);
     }
 
     private void Start()
@@ -70,6 +71,7 @@ public class ResultController : MonoBehaviour
 
     private void OnPlayerDead()
     {
+        Debug.Log("Player dead");
         _playerDisposable?.Dispose();
         _targetDisposable?.Dispose();
         StopMovement();
@@ -78,6 +80,7 @@ public class ResultController : MonoBehaviour
 
     private void OnTargetDead()
     {
+        Debug.Log("Target dead");
         var targetCount = GetTargetCount();
         if (targetCount <= 0)
         {

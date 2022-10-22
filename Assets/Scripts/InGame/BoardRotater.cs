@@ -10,7 +10,7 @@ public class BoardRotater : MonoBehaviour
     [SerializeField] private Transform board;
     [SerializeField] private float rotateTime = 0.5f;
     
-    private Subject<Unit> _rotateSubject;
+    private Subject<Unit> _rotateSubject = new Subject<Unit>();
     public IObservable<Unit> OnRotate => _rotateSubject;
 
     private int _remainedRotateCount;
@@ -25,6 +25,7 @@ public class BoardRotater : MonoBehaviour
 
     private void Update()
     {
+        // Debug.Log($"{StageStateHolder.StageState} {_canInput} {_remainedRotateCount}");
         if (StageStateHolder.StageState is StageState.AfterGame) return;
         if (!_canInput) return;
         if (_remainedRotateCount <= 0) return;

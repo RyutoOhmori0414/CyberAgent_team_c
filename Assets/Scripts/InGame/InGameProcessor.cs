@@ -12,10 +12,12 @@ public class InGameProcessor : MonoBehaviour
 
     private void Start()
     {
+        _currentStage = 1; // 仮置き
         var maxRotateCount = stageData.stageList[_currentStage - 1].maxRotateCount;
         boardRotater.SetRotateCount(maxRotateCount);
         resultController.SetRotateCount(maxRotateCount);
         StageStateHolder.StageState = StageState.InGame;
+        Debug.Log($"SetRotate:{maxRotateCount} state:{StageStateHolder.StageState}");
     }
 
     /// <summary>
