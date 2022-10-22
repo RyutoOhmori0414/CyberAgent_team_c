@@ -10,6 +10,11 @@ public class InGameProcessor : MonoBehaviour
 
     private static int _currentStage = 1;
 
+    private void Awake()
+    {
+        MoveObjectHolder.Clear();
+    }
+    
     private void Start()
     {
         var maxRotateCount = stageData.stageList[_currentStage - 1].maxRotateCount;

@@ -48,12 +48,12 @@ MonoBehaviour:
   - isCleared: 0
     maxRotateCount: 10
   - isCleared: 0
-    maxRotateCount: 0
+    maxRotateCount: 10
   - isCleared: 0
-    maxRotateCount: 0
+    maxRotateCount: 10
   - isCleared: 0
-    maxRotateCount: 0
+    maxRotateCount: 10
   - isCleared: 0
-    maxRotateCount: 0
+    maxRotateCount: 10
   - isCleared: 0
-    maxRotateCount: 0
+    maxRotateCount: 10

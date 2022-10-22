@@ -84,6 +84,8 @@ public class ResultController : MonoBehaviour
         Debug.Log("Target dead => " + targetCount);
         if (targetCount <= 0)
         {
+            _playerDisposable?.Dispose();
+            _targetDisposable?.Dispose();
             OnStageCleared();
         }
     }
@@ -99,6 +101,7 @@ public class ResultController : MonoBehaviour
 
     private void OnStageCleared()
     {
+        _cts.Cancel();
         StageStateHolder.StageState = StageState.AfterGame;
         stageClearWindow.Open();
     }
@@ -133,6 +136,11 @@ public class ResultController : MonoBehaviour
             _cts = new CancellationTokenSource();
             WaitTime(_cts.Token).Forget();
             WaitAllVelocityStopped(_cts.Token).Forget();
+        }
+
+        public void Cancel()
+        {
+            _cts.Cancel();
         }
 
         private async UniTaskVoid WaitTime(CancellationToken token)
