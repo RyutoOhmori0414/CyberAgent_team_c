@@ -170,6 +170,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3278653332141324637}
   - component: {fileID: 3087948230764940265}
+  - component: {fileID: 205798182487990243}
   m_Layer: 5
   m_Name: ClearWindow
   m_TagString: Untagged
@@ -211,6 +212,19 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &205798182487990243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3278653332141324636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84bbddf75e6049d9944db4410577780e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  windowObject: {fileID: 3278653332141324636}
 --- !u!1 &3278653332171318958
 GameObject:
   m_ObjectHideFlags: 0
