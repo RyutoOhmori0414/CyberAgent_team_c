@@ -17,9 +17,6 @@ public class Target : MonoBehaviour, IMoveable, ITeleportable
     [SerializeField]
     MoveObjectHolder _moveObjectHolder = default;
 
-    private Vector3 _angularVelocity;
-    private Vector3 _velocity;
-
     private bool _isMove = true;
 
     private void Start()
@@ -88,5 +85,10 @@ public class Target : MonoBehaviour, IMoveable, ITeleportable
     public void TeleportTo(Transform transform)
     {
         this.transform.position = transform.position;
+    }
+
+    public Vector3 GetVelocity()
+    {
+        return _rig.velocity;
     }
 }
