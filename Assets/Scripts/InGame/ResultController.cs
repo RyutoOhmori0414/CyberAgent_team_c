@@ -9,7 +9,6 @@ using UnityEngine;
 public class ResultController : MonoBehaviour
 {
     [SerializeField] private BoardRotater boardRotater;
-    [SerializeField] private MoveObjectHolder moveObjectHolder;
     [SerializeField] private RotateCountView rotateCountView;
     [SerializeField] private Window stageClearWindow;
     [SerializeField] private Window failWindow;
@@ -60,7 +59,7 @@ public class ResultController : MonoBehaviour
 
     private async UniTaskVoid WaitFinishAsync(CancellationToken token)
     {
-        var finishWaiter = new FinishWaiter(moveObjectHolder.GetCollection());
+        var finishWaiter = new FinishWaiter(MoveObjectHolder.GetCollection());
         await UniTask.WaitUntil(() => finishWaiter.IsFinished, cancellationToken: token);
         
         // 止まった or 時間が経過した
@@ -88,7 +87,7 @@ public class ResultController : MonoBehaviour
     
     private void StopMovement()
     {
-        var moveables = moveObjectHolder.GetCollection();
+        var moveables = MoveObjectHolder.GetCollection();
         foreach (var moveable in moveables)
         {
             moveable.StopMovement();
@@ -114,7 +113,7 @@ public class ResultController : MonoBehaviour
 
     private int GetTargetCount()
     {
-        var moveables = moveObjectHolder.GetCollection();
+        var moveables = MoveObjectHolder.GetCollection();
         return moveables.Select(x => x is Target).Count();
     }
 
