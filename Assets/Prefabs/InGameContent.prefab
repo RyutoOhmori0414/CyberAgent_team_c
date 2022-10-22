@@ -494,6 +494,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4552858667558072357}
     m_Modifications:
+    - target: {fileID: 3788247678115545625, guid: 04bfbac9fea716f49b90da31cc380c95, type: 3}
+      propertyPath: inGameProcessor
+      value: 
+      objectReference: {fileID: 4552858669267019143}
+    - target: {fileID: 4974564482036619055, guid: 04bfbac9fea716f49b90da31cc380c95, type: 3}
+      propertyPath: inGameProcessor
+      value: 
+      objectReference: {fileID: 4552858669267019143}
     - target: {fileID: 9128690608327570820, guid: 04bfbac9fea716f49b90da31cc380c95, type: 3}
       propertyPath: m_Name
       value: FailWindow
@@ -607,6 +615,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4552858667558072357}
     m_Modifications:
+    - target: {fileID: 1596163649673714679, guid: 4ea0d463a68bb304a9f6db5d9acbb73b, type: 3}
+      propertyPath: inGameProcessor
+      value: 
+      objectReference: {fileID: 4552858669267019143}
+    - target: {fileID: 2481048210966087134, guid: 4ea0d463a68bb304a9f6db5d9acbb73b, type: 3}
+      propertyPath: inGameProcessor
+      value: 
+      objectReference: {fileID: 4552858669267019143}
     - target: {fileID: 3278653332141324636, guid: 4ea0d463a68bb304a9f6db5d9acbb73b, type: 3}
       propertyPath: m_Name
       value: ClearWindow
