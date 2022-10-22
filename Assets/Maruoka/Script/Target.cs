@@ -34,10 +34,9 @@ public class Target : MonoBehaviour, IMoveable, ITeleportable
             StartMovement();
         }
     }
-    private void FixedUpdate()
+    private void OnTriggerEnter(Collider other)
     {
-        // —Ž‰º”»’è
-        if (transform.position.y < 0.0f)
+        if (other.tag == "Finish")
         {
             Death();
         }

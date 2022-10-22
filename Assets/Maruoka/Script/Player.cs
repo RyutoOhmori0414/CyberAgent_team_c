@@ -21,10 +21,9 @@ public class Player : MonoBehaviour, IMoveable, ITeleportable
         MoveObjectHolder.AddObject(this);
         _rig = GetComponent<Rigidbody>();
     }
-    private void FixedUpdate()
+    private void OnTriggerEnter(Collider other)
     {
-        // —Ž‰º”»’è
-        if (transform.position.y < 0.0f)
+        if (other.tag == "Finish")
         {
             Death();
         }
