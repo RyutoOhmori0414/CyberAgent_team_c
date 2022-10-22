@@ -21,19 +21,6 @@ public class Target : MonoBehaviour, IMoveable, ITeleportable
         MoveObjectHolder.AddObject(this);
         _rig = GetComponent<Rigidbody>();
     }
-    private void Update()
-    {
-        // Moveストップのテスト
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            StopMovement();
-        }
-        // Moveスタートのテスト
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            StartMovement();
-        }
-    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Finish")
