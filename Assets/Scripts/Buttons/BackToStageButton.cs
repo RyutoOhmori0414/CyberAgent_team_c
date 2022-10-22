@@ -7,6 +7,8 @@ public class BackToStageButton : ButtonBase
     
     public override void OnPointerClick(PointerEventData eventData)
     {
+        AudioManager.instance.StopBGM();
+        AudioManager.instance.PlayBGM(0);
         inGameProcessor.GoBack();
     }
 }

@@ -8,16 +8,16 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource SE;
     [SerializeField] private AudioClip[] SEList;
 
-    private static AudioManager _instance;
+    public static AudioManager instance;
     private const float BGMVolume = 0.3f;
     private const float SEVolume = 0.6f;
 
     private void Start()
     {
         // 簡易シングルトン
-        if (_instance == null)
+        if (instance == null)
         {
-            _instance = this;
+            instance = this;
             DontDestroyOnLoad(this.gameObject);
         }
         else

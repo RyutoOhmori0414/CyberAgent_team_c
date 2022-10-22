@@ -21,7 +21,6 @@ public class InGameProcessor : MonoBehaviour
         boardRotater.SetRotateCount(maxRotateCount);
         resultController.SetRotateCount(maxRotateCount);
         StageStateHolder.StageState = StageState.InGame;
-        Debug.Log($"SetRotate:{maxRotateCount} state:{StageStateHolder.StageState}");
     }
 
     /// <summary>
