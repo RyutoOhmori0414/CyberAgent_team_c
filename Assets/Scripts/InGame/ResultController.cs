@@ -22,6 +22,7 @@ public class ResultController : MonoBehaviour
     public void SetRotateCount(int count)
     {
         _remainedRotateCount = count;
+        rotateCountView.SetCount(_remainedRotateCount);
     }
 
     private void Start()
@@ -70,6 +71,7 @@ public class ResultController : MonoBehaviour
 
     private void OnPlayerDead()
     {
+        Debug.Log("Player dead");
         _playerDisposable?.Dispose();
         _targetDisposable?.Dispose();
         StopMovement();
@@ -79,8 +81,11 @@ public class ResultController : MonoBehaviour
     private void OnTargetDead()
     {
         var targetCount = GetTargetCount();
+        Debug.Log("Target dead => " + targetCount);
         if (targetCount <= 0)
         {
+            _playerDisposable?.Dispose();
+            _targetDisposable?.Dispose();
             OnStageCleared();
         }
     }
@@ -96,6 +101,7 @@ public class ResultController : MonoBehaviour
 
     private void OnStageCleared()
     {
+        _cts.Cancel();
         StageStateHolder.StageState = StageState.AfterGame;
         stageClearWindow.Open();
     }
@@ -114,7 +120,7 @@ public class ResultController : MonoBehaviour
     private int GetTargetCount()
     {
         var moveables = MoveObjectHolder.GetCollection();
-        return moveables.Select(x => x is Target).Count();
+        return moveables.Count(x => x is Target);
     }
 
     private class FinishWaiter
@@ -130,6 +136,11 @@ public class ResultController : MonoBehaviour
             _cts = new CancellationTokenSource();
             WaitTime(_cts.Token).Forget();
             WaitAllVelocityStopped(_cts.Token).Forget();
+        }
+
+        public void Cancel()
+        {
+            _cts.Cancel();
         }
 
         private async UniTaskVoid WaitTime(CancellationToken token)

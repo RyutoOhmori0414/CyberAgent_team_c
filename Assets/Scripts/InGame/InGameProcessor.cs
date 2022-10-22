@@ -8,14 +8,20 @@ public class InGameProcessor : MonoBehaviour
     [SerializeField] private ResultController resultController;
     [SerializeField] private SceneChanger sceneChanger;
 
-    private static int _currentStage;
+    private static int _currentStage = 1;
 
+    private void Awake()
+    {
+        MoveObjectHolder.Clear();
+    }
+    
     private void Start()
     {
         var maxRotateCount = stageData.stageList[_currentStage - 1].maxRotateCount;
         boardRotater.SetRotateCount(maxRotateCount);
         resultController.SetRotateCount(maxRotateCount);
         StageStateHolder.StageState = StageState.InGame;
+        Debug.Log($"SetRotate:{maxRotateCount} state:{StageStateHolder.StageState}");
     }
 
     /// <summary>
