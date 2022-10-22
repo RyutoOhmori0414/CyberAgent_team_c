@@ -5,13 +5,14 @@ using UniRx;
 
 public class SwitchableWall : MonoBehaviour
 {
+    [SerializeField]
     SwitchObject _switchObject;
     [Tooltip("スイッチが押された際のスイッチの移動"),SerializeField]
     Vector3 _position;
 
     private void Start()
     {
-        _switchObject.PressState.Subscribe(x =>
+        _switchObject.PressState.Skip(1).Subscribe(x =>
         {
             if (x)
             {
