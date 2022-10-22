@@ -1,4 +1,6 @@
-﻿public interface IMoveable
+﻿using UnityEngine;
+
+public interface IMoveable
 {
     /// <summary>
     /// 移動を開始する
@@ -9,4 +11,9 @@
     /// 移動を止める
     /// </summary>
     public void StopMovement();
+
+    /// <summary>
+    /// オブジェクトのVelocityを取得する
+    /// </summary>
+    public Vector3 GetVelocity();
 }
