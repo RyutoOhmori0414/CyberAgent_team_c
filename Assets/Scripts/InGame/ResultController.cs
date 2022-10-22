@@ -97,11 +97,13 @@ public class ResultController : MonoBehaviour
 
     private void OnStageCleared()
     {
+        StageStateHolder.StageState = StageState.AfterGame;
         stageClearWindow.Open();
     }
 
     private void OnFailed()
     {
+        StageStateHolder.StageState = StageState.AfterGame;
         failWindow.Open();
     }
 

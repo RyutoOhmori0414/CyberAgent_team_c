@@ -4,6 +4,7 @@ using UnityEngine;
 public class InGameProcessor : MonoBehaviour
 {
     [SerializeField] private StageData stageData;
+    [SerializeField] private BoardRotater boardRotater;
     [SerializeField] private ResultController resultController;
     [SerializeField] private SceneChanger sceneChanger;
 
@@ -11,7 +12,10 @@ public class InGameProcessor : MonoBehaviour
 
     private void Start()
     {
-        resultController.SetRotateCount(stageData.stageList[_currentStage - 1].maxRotateCount);
+        var maxRotateCount = stageData.stageList[_currentStage - 1].maxRotateCount;
+        boardRotater.SetRotateCount(maxRotateCount);
+        resultController.SetRotateCount(maxRotateCount);
+        StageStateHolder.StageState = StageState.InGame;
     }
 
     /// <summary>
