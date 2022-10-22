@@ -43,7 +43,7 @@ public class Target : MonoBehaviour, IMoveable, ITeleportable
     }
     private void Death()
     {
-        //_moveObjectHolder.RemoveObject(this);
+        MoveObjectHolder.RemoveObject(this);
         _deathSubject.OnNext(Unit.Default);
         Destroy(this.gameObject);
     }
