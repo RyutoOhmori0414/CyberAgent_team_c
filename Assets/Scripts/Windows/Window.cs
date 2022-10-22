@@ -1,4 +1,6 @@
-﻿public abstract class Window
+﻿using UnityEngine;
+
+public abstract class Window : MonoBehaviour
 {
     public virtual void Open()
     {
