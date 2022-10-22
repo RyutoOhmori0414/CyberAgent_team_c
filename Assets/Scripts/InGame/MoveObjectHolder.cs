@@ -1,22 +1,22 @@
 using System.Collections.Generic;
 
-public static class MoveObjectHolder
+public class MoveObjectHolder
 {
-    private static ICollection<IMoveable> _moveObjects;
+    private ICollection<IMoveable> _moveObjects;
 
-    public static ICollection<IMoveable> GetCollection() => _moveObjects;
+    public ICollection<IMoveable> GetCollection() => _moveObjects;
 
-    public static void AddObject(IMoveable moveable)
+    public void AddObject(IMoveable moveable)
     {
         _moveObjects.Add(moveable);
     }
 
-    public static void RemoveObject(IMoveable moveable)
+    public void RemoveObject(IMoveable moveable)
     {
         _moveObjects.Remove(moveable);
     }
 
-    public static void Clear()
+    public void Clear()
     {
         _moveObjects.Clear();
     }

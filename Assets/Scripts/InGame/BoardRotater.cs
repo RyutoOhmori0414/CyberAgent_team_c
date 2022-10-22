@@ -7,6 +7,7 @@ using UniRx;
 
 public class BoardRotater : MonoBehaviour
 {
+    [SerializeField] private MoveObjectHolder moveObjectHolder;
     [SerializeField] private Transform board;
     [SerializeField] private float rotateTime = 0.5f;
     
@@ -70,13 +71,13 @@ public class BoardRotater : MonoBehaviour
         // カメラは+Z方向
         var currentAngle = board.rotation.eulerAngles;
         var targetAngle = currentAngle + new Vector3(0, 0, angle);
-        board.DOLocalRotate(targetAngle, rotateTime).SetEase(Ease.InOutCirc);
+        transform.DOLocalRotate(targetAngle, rotateTime).SetEase(Ease.InOutCirc);
     }
 
     private void StopMovement()
     {
         _canInput = false;
-        var moveables = MoveObjectHolder.GetCollection();
+        var moveables = moveObjectHolder.GetCollection();
         foreach (var moveable in moveables)
         {
             moveable.StopMovement();
@@ -86,7 +87,7 @@ public class BoardRotater : MonoBehaviour
     private void StartMovement()
     {
         _canInput = true;
-        var moveables = MoveObjectHolder.GetCollection();
+        var moveables = moveObjectHolder.GetCollection();
         foreach (var moveable in moveables)
         {
             moveable.StartMovement();
