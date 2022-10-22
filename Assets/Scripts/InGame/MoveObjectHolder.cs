@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 public static class MoveObjectHolder
 {
-    private static ICollection<IMoveable> _moveObjects;
+    private static ICollection<IMoveable> _moveObjects = new List<IMoveable>();
 
     public static ICollection<IMoveable> GetCollection() => _moveObjects;
 
