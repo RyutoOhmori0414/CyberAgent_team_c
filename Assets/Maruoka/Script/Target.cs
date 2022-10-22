@@ -86,4 +86,9 @@ public class Target : MonoBehaviour, IMoveable, ITeleportable
     {
         this.transform.position = transform.position;
     }
+
+    public Vector3 GetVelocity()
+    {
+        return _rig.velocity;
+    }
 }
