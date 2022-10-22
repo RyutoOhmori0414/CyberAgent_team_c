@@ -7,7 +7,7 @@ public class ButtonBase : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
     /// オブジェクトをクリックしたとき
     /// </summary>
     /// <param name="eventData"></param>
-    public void OnPointerClick(PointerEventData eventData)
+    public virtual void OnPointerClick(PointerEventData eventData)
     {
         
     }
@@ -16,7 +16,7 @@ public class ButtonBase : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
     /// オブジェクトにカーソルが入った時
     /// </summary>
     /// <param name="eventData"></param>
-    public void OnPointerEnter(PointerEventData eventData)
+    public virtual void OnPointerEnter(PointerEventData eventData)
     {
         
     }
@@ -25,7 +25,7 @@ public class ButtonBase : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
     /// オブジェクトからカーソルが出た時
     /// </summary>
     /// <param name="eventData"></param>
-    public void OnPointerExit(PointerEventData eventData)
+    public virtual void OnPointerExit(PointerEventData eventData)
     {
         
     }
